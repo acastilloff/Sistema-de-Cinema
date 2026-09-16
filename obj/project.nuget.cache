@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "8lSmsREg/nk=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\arthur62037926\\OneDrive - SENAC-SC\\Documentos\\GitHub\\ProjetoFinalDS-Arthur-Ester-Luz\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\arthur62037926\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\arthur62037926\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.2\\microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+    "C:\\Users\\arthur62037926\\.nuget\\packages\\mysqlconnector\\2.6.2\\mysqlconnector.2.6.2.nupkg.sha512"
+  ],
+  "logs": []
+}
