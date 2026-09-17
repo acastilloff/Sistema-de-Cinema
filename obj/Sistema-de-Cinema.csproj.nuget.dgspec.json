@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\arthur62037926\\OneDrive - SENAC-SC\\Documentos\\GitHub\\ProjetoFinalDS-Arthur-Ester-Luz\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj": {}
+    "C:\\Users\\ester62042096\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj": {}
   },
   "projects": {
-    "C:\\Users\\arthur62037926\\OneDrive - SENAC-SC\\Documentos\\GitHub\\ProjetoFinalDS-Arthur-Ester-Luz\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj": {
+    "C:\\Users\\ester62042096\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\arthur62037926\\OneDrive - SENAC-SC\\Documentos\\GitHub\\ProjetoFinalDS-Arthur-Ester-Luz\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
+        "projectUniqueName": "C:\\Users\\ester62042096\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
         "projectName": "Sistema-de-Cinema",
-        "projectPath": "C:\\Users\\arthur62037926\\OneDrive - SENAC-SC\\Documentos\\GitHub\\ProjetoFinalDS-Arthur-Ester-Luz\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
-        "packagesPath": "C:\\Users\\arthur62037926\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\arthur62037926\\OneDrive - SENAC-SC\\Documentos\\GitHub\\ProjetoFinalDS-Arthur-Ester-Luz\\Sistema-de-Cinema\\obj\\",
+        "projectPath": "C:\\Users\\ester62042096\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
+        "packagesPath": "C:\\Users\\ester62042096\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ester62042096\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\arthur62037926\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ester62042096\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -44,6 +44,10 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[26.7.0, )"
+            },
             "MySqlConnector": {
               "target": "Package",
               "version": "[2.6.2, )"
