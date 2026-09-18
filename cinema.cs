@@ -1,3 +1,4 @@
+using System.Reflection.Metadata.Ecma335;
 using MySqlConnector;
 
 public class Cinema
@@ -9,21 +10,82 @@ public class Cinema
     Password=Senac2026;
     """;
    
-    public int Id { get; set; }
-    public double Ingresso { get; set; }
-    public string NomeFilme { get; set; }
-    public int Poltronas { get; set; }
-
-       public Cinema()
+    private int Id;
+    private double preçoIngresso;
+    private int quantidadeIngressos;
+    private string nomeFilme;
+    private bool[,]poltronas = new bool;
+    private bool reservarAssento;
+    
+    public Cinema(double PreçoIngresso, int QuantidadeIngressos, string NomeFilme, bool[,] Poltronas, bool ReservarAssento)
     {
+        preçoIngresso = PreçoIngresso;
+        quantidadeIngressos = QuantidadeIngressos;
+        nomeFilme = NomeFilme;
+        poltronas = Poltronas;
+        reservarAssento = ReservarAssento;
     }
 
-    
-    public Cinema(double ingresso, string nomeFilme, int poltronas)
+    public double PreçoIngresso
     {
-        Ingresso = ingresso;
-        NomeFilme = nomeFilme;
-        Poltronas = poltronas;
+        get{return preçoIngresso;}
+        set
+        {
+            if(value < 22.50)
+            {
+                Console.WriteLine("Valor inválido.");
+            }
+            else
+            {
+                preçoIngresso = value;
+            }
+        }
+    }
+
+    public int QuantidadeIngressos
+    {
+        get{return quantidadeIngressos;}
+        set
+        {
+            if(value<0 || value > 10)
+            {
+                Console.WriteLine("Quantidade inválida ou ultrapassada do limite. Tente Novamente.");
+            }
+            else
+            {
+                quantidadeIngressos = value;
+            }
+        }
+    }
+
+    public string NomeFilme
+    {
+        get{return nomeFilme;}
+        set
+        {
+            if(string.IsNullOrWhiteSpace(value))
+            {
+                Console.WriteLine("Nome inválido.");
+            }
+            else
+            {
+                nomeFilme = value;
+            }
+
+        }
+    }
+
+    public bool[,]Poltronas
+    {
+        get{return poltronas;}
+        set{poltronas = value;}
+    }
+
+    public bool ReservarAssento(int linha, int coluna)
+    {
+        if(poltronas[linha,coluna]) return false;
+        poltronas[linha,coluna] = true;
+        return true;
     }
 
     
@@ -38,9 +100,11 @@ public class Cinema
 
             using (MySqlCommand comando = new MySqlCommand(sql, banco))
             {
-                comando.Parameters.AddWithValue("@ingresso", Ingresso);
+                comando.Parameters.AddWithValue("@ingresso", PreçoIngresso);
+                comando.Parameters.AddWithValue("@ingresso", QuantidadeIngressos);
                 comando.Parameters.AddWithValue("@nomeFilme", NomeFilme);
                 comando.Parameters.AddWithValue("@poltronas", Poltronas);
+                comando.Parameters.AddWithValue("@poltronas", ReservarAssento);
 
                 comando.ExecuteNonQuery();
             }
@@ -71,11 +135,11 @@ public class Cinema
                 {
                     Cinema cinema = new Cinema();
 
-                    cinema.Id = leitor.GetInt32("id");
-                    cinema.Ingresso = leitor.GetDouble("ingresso");
-                    cinema.NomeFilme = leitor.GetString("nomeFilme");
-                    cinema.Poltronas = leitor.GetInt32("poltronas");
-
+                    cinema.Id = leitor.GetInt32("ID");
+                        cinema.PreçoIngresso = leitor.GetDouble("Preço do Ingresso");
+                        cinema.QuantidadeIngressos = leitor.GetInt32("Número de Ingressos");
+                        cinema.NomeFilme = leitor.GetString("Nome do Filme");
+                        cinema.Poltronas = leitor.GetBoolean("Número das Poltronas");
                     Console.WriteLine(cinema);
                 }
             }
@@ -106,10 +170,11 @@ public class Cinema
                     {
                         Cinema cinema = new Cinema();
 
-                        cinema.Id = leitor.GetInt32("id");
-                        cinema.Ingresso = leitor.GetDouble("ingresso");
-                        cinema.NomeFilme = leitor.GetString("nomeFilme");
-                        cinema.Poltronas = leitor.GetInt32("poltronas");
+                        cinema.Id = leitor.GetInt32("ID");
+                        cinema.PreçoIngresso = leitor.GetDouble("Preço do Ingresso");
+                        cinema.QuantidadeIngressos = leitor.GetInt32("Número de Ingressos");
+                        cinema.NomeFilme = leitor.GetString("Nome do Filme");
+                        cinema.Poltronas = leitor.GetBoolean("Número das Poltronas");
 
                         Console.WriteLine(cinema);
                     }
