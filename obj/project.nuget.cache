@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "d6PQZg4k07U=",
+=======
+  "dgSpecHash": "CApR2o6Yjtk=",
+>>>>>>> 312661897b4cb9cc56030b47b8ffed1a7e9d5ba9
   "success": true,
   "projectFilePath": "C:\\Users\\giovanna60895976\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
   "expectedPackageFiles": [
