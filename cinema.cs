@@ -14,7 +14,7 @@ public class Cinema
     private double preçoIngresso;
     private int quantidadeIngressos;
     private string nomeFilme;
-    private bool[,]poltronas = new bool;
+    private bool[,]poltronas = new bool[5,5];
     private bool reservarAssento;
     
     public Cinema(double PreçoIngresso, int QuantidadeIngressos, string NomeFilme, bool[,] Poltronas, bool ReservarAssento)
@@ -95,7 +95,7 @@ public class Cinema
         {
             banco.Open();
 
-            string sql = "INSERT INTO cinemas (ingresso, nomeFilme, poltronas) " +
+            string sql = "INSERT INTO cinemas (preçoingresso, quantidadeingressos, nomeFilme, poltronas) " +
                          "VALUES (@ingresso, @nomeFilme, @poltronas)";
 
             using (MySqlCommand comando = new MySqlCommand(sql, banco))
@@ -139,7 +139,7 @@ public class Cinema
                         cinema.PreçoIngresso = leitor.GetDouble("Preço do Ingresso");
                         cinema.QuantidadeIngressos = leitor.GetInt32("Número de Ingressos");
                         cinema.NomeFilme = leitor.GetString("Nome do Filme");
-                        cinema.Poltronas = leitor.GetBoolean("Número das Poltronas");
+                        cinema.Poltronas = leitor.GetBoolean("Número das Poltronas da Sala");
                     Console.WriteLine(cinema);
                 }
             }
@@ -174,7 +174,7 @@ public class Cinema
                         cinema.PreçoIngresso = leitor.GetDouble("Preço do Ingresso");
                         cinema.QuantidadeIngressos = leitor.GetInt32("Número de Ingressos");
                         cinema.NomeFilme = leitor.GetString("Nome do Filme");
-                        cinema.Poltronas = leitor.GetBoolean("Número das Poltronas");
+                        cinema.Poltronas = leitor.GetBoolean("Número das Poltronas da Sala");
 
                         Console.WriteLine(cinema);
                     }
@@ -201,7 +201,8 @@ public class Cinema
             using (MySqlCommand comando = new MySqlCommand(sql, banco))
             {
                 comando.Parameters.AddWithValue("@id", Id);
-                comando.Parameters.AddWithValue("@ingresso", Ingresso);
+                comando.Parameters.AddWithValue("@preçoingresso", preçoIngresso);
+                comando.Parameters.AddWithValue("@quantidadeingresso", quantidadeIngressos);
                 comando.Parameters.AddWithValue("@nomeFilme", NomeFilme);
                 comando.Parameters.AddWithValue("@poltronas", Poltronas);
 
@@ -254,6 +255,6 @@ public class Cinema
 
     public override string ToString()
     {
-        return $"{Id} - {NomeFilme} - R$ {Ingresso:F2} - Poltronas: {Poltronas}";
+        return $"{Id} || {NomeFilme} || R$: {PreçoIngresso} || Quantidade de Ingressos: {QuantidadeIngressos} || Poltronas Escolhidas: {Poltronas}";
     }
 }
