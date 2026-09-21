@@ -1,11 +1,8 @@
 ﻿while (true)
 {
-    Console.WriteLine();
-    Console.WriteLine("==============================");
-    Console.WriteLine("        GASTHER COLLUZ");
-    Console.WriteLine("        SISTEMA DE FILMES");
-    Console.WriteLine("==============================");
-    Console.WriteLine();
+  
+    Console.WriteLine("        SISTEMA DE FILMES COLLUZ");
+    
 
     Console.WriteLine("1 - Cadastrar filme");
     Console.WriteLine("2 - Listar filmes");
