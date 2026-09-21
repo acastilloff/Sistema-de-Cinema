@@ -1,74 +1,72 @@
-﻿using System;
-
-class Program
+﻿class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("=== INICIANDO TESTES DO CRUD COMPLETO ===\n");
+        // ==========================================
+        // CINEMAS / FILMES
+        // ==========================================
+
+        Cinema cinema1 = new Cinema(25.00, "Vingadores: Ultimato");
+        Cinema cinema2 = new Cinema(30.00, "Homem-Aranha: Sem Volta Para Casa");
+        Cinema cinema3 = new Cinema(22.50, "Interestelar");
+        Cinema cinema4 = new Cinema(28.00, "Divertida Mente 2");
+        Cinema cinema5 = new Cinema(27.50, "Jurassic World");
 
         // ==========================================
-        // 1. CREATE (CADASTRAR)
+        // CADASTRAR NO BANCO DE DADOS
         // ==========================================
-        Console.WriteLine("--- 1. Testando Cadastro (CREATE) ---");
-        
-        string filmeCadastro = "Vingadores: Ultimato";
-        double precoCadastro = 45.50;
 
-        Cinema novoCinema = new Cinema(precoCadastro, filmeCadastro);
-        
-        // Reservando assentos no código
-        novoCinema.ReservarAssento(1, 1);
-        novoCinema.ReservarAssento(1, 2);
-
-        novoCinema.Cadastrar();
-
+        cinema1.Cadastrar();
+        cinema2.Cadastrar();
+        cinema3.Cadastrar();
+        cinema4.Cadastrar();
+        cinema5.Cadastrar();
 
         // ==========================================
-        // 2. READ (LISTAR TODOS)
+        // RESERVAR ALGUNS ASSENTOS
         // ==========================================
-        Console.WriteLine("\n--- 2. Testando Listagem Geral (READ) ---");
+
+        cinema1.ReservarAssento(0, 0);
+        cinema1.ReservarAssento(0, 1);
+        cinema1.ReservarAssento(1, 2);
+
+        cinema2.ReservarAssento(2, 2);
+        cinema2.ReservarAssento(2, 3);
+
+        cinema3.ReservarAssento(1, 1);
+
+        // ==========================================
+        // ATUALIZAR QUANTIDADE DE POLTRONAS
+        // ==========================================
+
+        cinema1.Atualizar();
+        cinema2.Atualizar();
+        cinema3.Atualizar();
+
+        // ==========================================
+        // LISTAR TODOS OS CINEMAS
+        // ==========================================
+
+        Console.WriteLine();
+        Console.WriteLine("==========================================");
+        Console.WriteLine("         CINEMAS CADASTRADOS");
+        Console.WriteLine("==========================================");
+
         Cinema.Listar();
 
-
         // ==========================================
-        // 3. READ (BUSCAR POR ID)
+        // BUSCAR UM CINEMA
         // ==========================================
-        Console.WriteLine("\n--- 3. Testando Busca por ID (READ) ---");
-        
-        int idParaBuscar = 1; 
-        Cinema.Buscar(idParaBuscar);
 
+        Console.WriteLine();
+        Console.WriteLine("==========================================");
+        Console.WriteLine("            BUSCAR CINEMA");
+        Console.WriteLine("==========================================");
 
-        // ==========================================
-        // 4. UPDATE (ATUALIZAR)
-        // ==========================================
-        Console.WriteLine("\n--- 4. Testando Atualização (UPDATE) ---");
-        
-        int idParaEditar = 1;
-        string filmeNovoNome = "Vingadores: Ultimato (Versão Estendida)";
-        double precoNovoValor = 50.00;
+        // Altere o número para o ID que quiser buscar
+        Cinema.Buscar(1);
 
-        Cinema cinemaEditado = new Cinema(precoNovoValor, filmeNovoNome);
-        cinemaEditado.Id = idParaEditar;
-        cinemaEditado.QuantidadePoltronasOcupadas = 4;
-
-        cinemaEditado.Atualizar();
-
-
-        // ==========================================
-        // 5. DELETE (EXCLUIR)
-        // ==========================================
-        Console.WriteLine("\n--- 5. Testando Exclusão (DELETE) ---");
-        
-        int idParaDeletar = 2; 
-        Cinema.Excluir(idParaDeletar);
-
-
-        // ==========================================
-        // FINALIZAÇÃO
-        // ==========================================
-        Console.WriteLine("\n=========================================");
-        Console.WriteLine("===    TODOS OS TESTES FINALIZADOS    ===");
-        Console.WriteLine("=========================================");
+        Console.WriteLine();
+        Console.WriteLine("Programa finalizado.");
     }
 }
