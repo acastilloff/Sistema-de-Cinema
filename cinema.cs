@@ -390,7 +390,6 @@ public class Filme
             "Database=Cinema;" +
             "User ID=root;" +
             "Password=Senac2026;";
-<<<<<<< HEAD
  
         using (MySqlConnection banco =
             new MySqlConnection(conexao))
@@ -522,16 +521,12 @@ public class Filme
             "User ID=root;" +
             "Password=Senac2026;";
  
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
         using (MySqlConnection banco =
             new MySqlConnection(conexao))
         {
             banco.Open();
  
             string sql =
-<<<<<<< HEAD
                 "UPDATE filmes SET " +
                 "nomeFilme = @nome, " +
                 "precoIngresso = @preco, " +
@@ -575,208 +570,11 @@ public class Filme
                     Console.WriteLine(
                         "Filme não encontrado!"
                     );
-=======
-                "SELECT * FROM filmes";
-
-            using (MySqlCommand comando =
-                new MySqlCommand(sql, banco))
-            {
-                using (MySqlDataReader leitor =
-                    comando.ExecuteReader())
-                {
-                    bool encontrou = false;
-
-                    while (leitor.Read())
-                    {
-                        encontrou = true;
-
-                        Filme filme = new Filme();
-
-                        filme.Id =
-                            Convert.ToInt32(leitor["id"]);
-
-                        filme.NomeFilme =
-                            leitor["nomeFilme"].ToString() ?? "";
-
-                        filme.PrecoIngresso =
-                            Convert.ToDouble(
-                                leitor["precoIngresso"]
-                            );
-
-                        filme.QuantidadeIngressos =
-                            Convert.ToInt32(
-                                leitor["quantidadeIngressos"]
-                            );
-
-                        Console.WriteLine(
-                            filme.ToString()
-                        );
-                    }
-
-                    if (!encontrou)
-                    {
-                        Console.WriteLine(
-                            "Nenhum filme cadastrado."
-                        );
-                    }
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
                 }
             }
         }
     }
-<<<<<<< HEAD
  
-    public static void Excluir(int id)
-=======
-
-    public static void Buscar(int id)
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
-    {
-        string conexao =
-            "Server=127.0.0.1;" +
-            "Port=3306;" +
-            "Database=Cinema;" +
-            "User ID=root;" +
-            "Password=Senac2026;";
-<<<<<<< HEAD
- 
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
-        using (MySqlConnection banco =
-            new MySqlConnection(conexao))
-        {
-            banco.Open();
-<<<<<<< HEAD
- 
-            string sql =
-                "DELETE FROM filmes WHERE id = @id";
- 
-=======
-
-            string sql =
-                "SELECT * FROM filmes WHERE id = @id";
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
-            using (MySqlCommand comando =
-                new MySqlCommand(sql, banco))
-            {
-                comando.Parameters.AddWithValue(
-                    "@id",
-                    id
-                );
-<<<<<<< HEAD
- 
-                int resultado =
-                    comando.ExecuteNonQuery();
- 
-=======
-
-                using (MySqlDataReader leitor =
-                    comando.ExecuteReader())
-                {
-                    if (leitor.Read())
-                    {
-                        Filme filme = new Filme();
-
-                        filme.Id =
-                            Convert.ToInt32(leitor["id"]);
-
-                        filme.NomeFilme =
-                            leitor["nomeFilme"].ToString() ?? "";
-
-                        filme.PrecoIngresso =
-                            Convert.ToDouble(
-                                leitor["precoIngresso"]
-                            );
-
-                        filme.QuantidadeIngressos =
-                            Convert.ToInt32(
-                                leitor["quantidadeIngressos"]
-                            );
-
-                        Console.WriteLine();
-                        Console.WriteLine("Filme encontrado!");
-                        Console.WriteLine(filme);
-                    }
-                    else
-                    {
-                        Console.WriteLine(
-                            "Filme não encontrado!"
-                        );
-                    }
-                }
-            }
-        }
-    }
-
-    public static void Atualizar(
-        int id,
-        string nome,
-        double preco,
-        int quantidade)
-    {
-        string conexao =
-            "Server=127.0.0.1;" +
-            "Port=3306;" +
-            "Database=Cinema;" +
-            "User ID=root;" +
-            "Password=Senac2026;";
-
-        using (MySqlConnection banco =
-            new MySqlConnection(conexao))
-        {
-            banco.Open();
-
-            string sql =
-                "UPDATE filmes SET " +
-                "nomeFilme = @nome, " +
-                "precoIngresso = @preco, " +
-                "quantidadeIngressos = @quantidade " +
-                "WHERE id = @id";
-
-            using (MySqlCommand comando =
-                new MySqlCommand(sql, banco))
-            {
-                comando.Parameters.AddWithValue(
-                    "@nome",
-                    nome
-                );
-
-                comando.Parameters.AddWithValue(
-                    "@preco",
-                    preco
-                );
-
-                comando.Parameters.AddWithValue(
-                    "@quantidade",
-                    quantidade
-                );
-
-                comando.Parameters.AddWithValue(
-                    "@id",
-                    id
-                );
-
-                int resultado =
-                    comando.ExecuteNonQuery();
-
-                if (resultado > 0)
-                {
-                    Console.WriteLine(
-                        "Filme atualizado com sucesso!"
-                    );
-                }
-                else
-                {
-                    Console.WriteLine(
-                        "Filme não encontrado!"
-                    );
-                }
-            }
-        }
-    }
-
     public static void Excluir(int id)
     {
         string conexao =
@@ -785,15 +583,15 @@ public class Filme
             "Database=Cinema;" +
             "User ID=root;" +
             "Password=Senac2026;";
-
+ 
         using (MySqlConnection banco =
             new MySqlConnection(conexao))
         {
             banco.Open();
-
+ 
             string sql =
                 "DELETE FROM filmes WHERE id = @id";
-
+ 
             using (MySqlCommand comando =
                 new MySqlCommand(sql, banco))
             {
@@ -801,11 +599,10 @@ public class Filme
                     "@id",
                     id
                 );
-
+ 
                 int resultado =
                     comando.ExecuteNonQuery();
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
+ 
                 if (resultado > 0)
                 {
                     Console.WriteLine(
@@ -821,11 +618,7 @@ public class Filme
             }
         }
     }
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     public override string ToString()
     {
         return
