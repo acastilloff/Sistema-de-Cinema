@@ -2,11 +2,12 @@ CREATE DATABASE IF NOT EXISTS Cinema;
 
 USE Cinema;
 
-CREATE TABLE IF NOT EXISTS cinemas 
+CREATE TABLE IF NOT EXISTS filmes
 (
-     id INT PRIMARY KEY AUTO_INCREMENT,
-    ingresso DECIMAL(10,2),
-    nomeFilme VARCHAR(100),
-    poltronas INT
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nomeFilme VARCHAR(100) NOT NULL,
+    precoIngresso DECIMAL(10,2) NOT NULL,
+    quantidadeIngressos INT NOT NULL
 );
-SELECT * FROM  cinemas
+
+SELECT * FROM filmes;
