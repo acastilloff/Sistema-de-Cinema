@@ -31,13 +31,22 @@ public class Filme
 
     public int Id
     {
-        get { return id; }
-        set { id = value; }
+        get
+        {
+            return id;
+        }
+        set
+        {
+            id = value;
+        }
     }
 
     public string NomeFilme
     {
-        get { return nomeFilme; }
+        get
+        {
+            return nomeFilme;
+        }
         set
         {
             if (string.IsNullOrWhiteSpace(value))
