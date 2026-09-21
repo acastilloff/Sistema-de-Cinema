@@ -5,7 +5,7 @@
     new bool[5, 5],
     false
 );
-
+ 
 while (true)
 {
     Console.WriteLine();
