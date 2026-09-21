@@ -1,180 +1,78 @@
-﻿while (true)
+﻿Cinema meuCinema = new Cinema(
+    25,
+    2,
+    "Homem-Aranha",
+    new bool[5, 5],
+    false
+);
+ 
+while (true)
 {
-  
-    Console.WriteLine("        SISTEMA DE FILMES COLLUZ");
-    
-
-    Console.WriteLine("1 - Cadastrar filme");
-    Console.WriteLine("2 - Listar filmes");
-    Console.WriteLine("3 - Buscar filme");
-    Console.WriteLine("4 - Atualizar filme");
-    Console.WriteLine("5 - Excluir filme");
-    Console.WriteLine("0 - Sair");
-
+    Console.WriteLine();
+    Console.WriteLine("===== POLTRONAS =====");
     Console.WriteLine();
 
-    Console.Write("Escolha uma opção: ");
-
-    string opcao = Console.ReadLine() ?? "";
-
-    Console.WriteLine();
-
-    if (opcao == "1")
+    // Mostra as poltronas
+    for (int linha = 0; linha < 5; linha++)
     {
-        Console.Write("Digite o nome do filme: ");
-
-        string nome = Console.ReadLine() ?? "";
-
-        while (string.IsNullOrWhiteSpace(nome))
+        for (int coluna = 0; coluna < 5; coluna++)
         {
-            Console.WriteLine("Nome inválido!");
-            Console.Write("Digite o nome do filme novamente: ");
-
-            nome = Console.ReadLine() ?? "";
+            if (meuCinema.Poltronas[linha, coluna])
+            {
+                Console.Write("[XX] ");
+            }
+            else
+            {
+                Console.Write("[  ] ");
+            }
         }
 
-        double preco;
-
-        Console.Write("Digite o preço do ingresso: ");
-
-        while (!double.TryParse(
-            Console.ReadLine(),
-            out preco) || preco <= 0)
-        {
-            Console.WriteLine("Preço inválido!");
-            Console.Write("Digite o preço novamente: ");
-        }
-
-        int quantidade;
-
-        Console.Write("Digite a quantidade de ingressos: ");
-
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out quantidade) || quantidade < 0)
-        {
-            Console.WriteLine("Quantidade inválida!");
-            Console.Write("Digite a quantidade novamente: ");
-        }
-
-        Filme filme = new Filme(
-            nome,
-            preco,
-            quantidade
-        );
-
-        filme.Cadastrar();
-    }
-    else if (opcao == "2")
-    {
-        Console.WriteLine("===== FILMES CADASTRADOS =====");
         Console.WriteLine();
-
-        Filme.Listar();
     }
-    else if (opcao == "3")
+
+    Console.WriteLine();
+    Console.WriteLine("Escolha uma poltrona.");
+    Console.Write("Digite a linha (0 a 4): ");
+
+    if (!int.TryParse(Console.ReadLine(), out int indiceLinha))
     {
-        int id;
-
-        Console.Write("Digite o ID do filme: ");
-
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out id) || id <= 0)
-        {
-            Console.WriteLine("ID inválido!");
-            Console.Write("Digite o ID novamente: ");
-        }
-
-        Filme.Buscar(id);
+        Console.WriteLine("Linha inválida!");
+        continue;
     }
-    else if (opcao == "4")
+
+    Console.Write("Digite a coluna (0 a 4): ");
+
+    if (!int.TryParse(Console.ReadLine(), out int indiceColuna))
     {
-        int id;
-
-        Console.Write("Digite o ID do filme: ");
-
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out id) || id <= 0)
-        {
-            Console.WriteLine("ID inválido!");
-            Console.Write("Digite o ID novamente: ");
-        }
-
-        Console.Write("Digite o novo nome do filme: ");
-
-        string nome = Console.ReadLine() ?? "";
-
-        while (string.IsNullOrWhiteSpace(nome))
-        {
-            Console.WriteLine("Nome inválido!");
-            Console.Write(
-                "Digite o nome do filme novamente: "
-            );
-
-            nome = Console.ReadLine() ?? "";
-        }
-
-        double preco;
-
-        Console.Write("Digite o novo preço: ");
-
-        while (!double.TryParse(
-            Console.ReadLine(),
-            out preco) || preco <= 0)
-        {
-            Console.WriteLine("Preço inválido!");
-            Console.Write("Digite o preço novamente: ");
-        }
-
-        int quantidade;
-
-        Console.Write("Digite a nova quantidade de ingressos: ");
-
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out quantidade) || quantidade < 0)
-        {
-            Console.WriteLine("Quantidade inválida!");
-            Console.Write(
-                "Digite a quantidade novamente: "
-            );
-        }
-
-        Filme.Atualizar(
-            id,
-            nome,
-            preco,
-            quantidade
-        );
+        Console.WriteLine("Coluna inválida!");
+        continue;
     }
-    else if (opcao == "5")
+
+    // Verifica se a posição existe
+    if (indiceLinha < 0 || indiceLinha >= 5 ||
+        indiceColuna < 0 || indiceColuna >= 5)
     {
-        int id;
-
-        Console.Write("Digite o ID do filme: ");
-
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out id) || id <= 0)
-        {
-            Console.WriteLine("ID inválido!");
-            Console.Write("Digite o ID novamente: ");
-        }
-
-        Filme.Excluir(id);
+        Console.WriteLine("Essa poltrona não existe!");
+        continue;
     }
-    else if (opcao == "0")
+
+    // Tenta reservar
+    if (meuCinema.ReservarAssento(indiceLinha, indiceColuna))
     {
-        Console.WriteLine("Programa encerrado.");
-        break;
+        Console.WriteLine("Assento reservado com sucesso!");
     }
     else
     {
-        Console.WriteLine("Opção inválida!");
-        Console.WriteLine(
-            "Digite uma opção entre 0 e 5."
-        );
+        Console.WriteLine("Este assento ja esta ocupado!");
+    }
+
+    Console.WriteLine();
+    Console.Write("Deseja reservar outro assento? (s/n): ");
+
+    string resposta = Console.ReadLine() ?? "";
+
+    if (resposta.ToLower() != "s")
+    {
+        break;
     }
 }
