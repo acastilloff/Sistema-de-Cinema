@@ -1,78 +1,88 @@
-﻿Cinema meuCinema = new Cinema(
+﻿// Cria a matriz de poltronas
+bool[,] lugares = new bool[5, 5];
+
+// Algumas poltronas já começam ocupadas
+lugares[0, 2] = true; // Poltrona 3
+lugares[1, 1] = true; // Poltrona 7
+lugares[2, 1] = true; // Poltrona 12
+lugares[3, 2] = true; // Poltrona 18
+lugares[4, 0] = true; // Poltrona 21
+
+
+// Cria o objeto Cinema
+Cinema meuCinema = new Cinema(
     25,
     2,
     "Homem-Aranha",
-    new bool[5, 5],
-    false
+    lugares,
+    true
 );
 
-while (true)
-{
-    Console.WriteLine();
-    Console.WriteLine("===== POLTRONAS =====");
-    Console.WriteLine();
 
-    // Mostra as poltronas
-    for (int linha = 0; linha < 5; linha++)
+// Número da poltrona que será reservada
+int numeroPoltrona = a;
+
+
+// Mostra as poltronas
+Console.WriteLine();
+Console.WriteLine("===== POLTRONAS =====");
+Console.WriteLine();
+
+int numero = 1;
+
+for (int linha = 0; linha < 5; linha++)
+{
+    for (int coluna = 0; coluna < 5; coluna++)
     {
-        for (int coluna = 0; coluna < 5; coluna++)
+        if (meuCinema.Poltronas[linha, coluna])
         {
-            if (meuCinema.Poltronas[linha, coluna])
-            {
-                Console.Write("[XX] ");
-            }
-            else
-            {
-                Console.Write("[  ] ");
-            }
+            Console.Write($"[{numero:00} XX] ");
+        }
+        else
+        {
+            Console.Write($"[{numero:00}   ] ");
         }
 
-        Console.WriteLine();
+        numero++;
     }
 
     Console.WriteLine();
-    Console.WriteLine("Escolha uma poltrona.");
-    Console.Write("Digite a linha (0 a 4): ");
+}
 
-    if (!int.TryParse(Console.ReadLine(), out int indiceLinha))
-    {
-        Console.WriteLine("Linha inválida!");
-        continue;
-    }
+Console.WriteLine();
 
-    Console.Write("Digite a coluna (0 a 4): ");
 
-    if (!int.TryParse(Console.ReadLine(), out int indiceColuna))
-    {
-        Console.WriteLine("Coluna inválida!");
-        continue;
-    }
+// Tenta reservar a poltrona escolhida
+if (meuCinema.ReservarAssento(numeroPoltrona))
+{
+    Console.WriteLine(
+        $"Assento {numeroPoltrona} reservado com sucesso!"
+    );
+}
 
-    // Verifica se a posição existe
-    if (indiceLinha < 0 || indiceLinha >= 5 ||
-        indiceColuna < 0 || indiceColuna >= 5)
-    {
-        Console.WriteLine("Essa poltrona não existe!");
-        continue;
-    }
 
-    // Tenta reservar
-    if (meuCinema.ReservarAssento(indiceLinha, indiceColuna))
+// Mostra novamente as poltronas
+Console.WriteLine();
+Console.WriteLine("===== APÓS A RESERVA =====");
+Console.WriteLine();
+
+numero = 1;
+
+for (int linha = 0; linha < 5; linha++)
+{
+    for (int coluna = 0; coluna < 5; coluna++)
     {
-        Console.WriteLine("Assento reservado com sucesso!");
-    }
-    else
-    {
-        Console.WriteLine("Este assento ja esta ocupado!");
+        if (meuCinema.Poltronas[linha, coluna])
+        {
+            Console.Write($"[{numero:00} XX] ");
+        }
+        else
+        {
+            Console.Write($"[{numero:00}   ] ");
+        }
+
+        numero++;
     }
 
     Console.WriteLine();
-    Console.Write("Deseja reservar outro assento? (s/n): ");
-
-    string resposta = Console.ReadLine() ?? "";
-
-    if (resposta.ToLower() != "s")
-    {
-        break;
-    }
 }

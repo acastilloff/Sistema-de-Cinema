@@ -22,7 +22,7 @@ public class Cinema
     {
     }
 
-    // Construtor com parâmetros
+    // Construtor
     public Cinema(
         double PreçoIngresso,
         int QuantidadeIngressos,
@@ -37,14 +37,14 @@ public class Cinema
         reservarAssento = ReservarAssento;
     }
 
-    // Propriedade ID
+    // ID
     public int Id
     {
         get { return id; }
         set { id = value; }
     }
 
-    // Propriedade PreçoIngresso
+    // Preço do ingresso
     public double PreçoIngresso
     {
         get { return preçoIngresso; }
@@ -52,7 +52,9 @@ public class Cinema
         {
             if (value < 22.50)
             {
-                Console.WriteLine("Valor inválido.");
+                Console.WriteLine(
+                    "O preço do ingresso deve ser no mínimo R$ 22,50."
+                );
             }
             else
             {
@@ -61,7 +63,7 @@ public class Cinema
         }
     }
 
-    // Propriedade QuantidadeIngressos
+    // Quantidade de ingressos
     public int QuantidadeIngressos
     {
         get { return quantidadeIngressos; }
@@ -70,7 +72,7 @@ public class Cinema
             if (value < 0 || value > 10)
             {
                 Console.WriteLine(
-                    "Quantidade inválida ou ultrapassada do limite. Tente novamente."
+                    "A quantidade deve estar entre 0 e 10."
                 );
             }
             else
@@ -80,7 +82,7 @@ public class Cinema
         }
     }
 
-    // Propriedade NomeFilme
+    // Nome do filme
     public string NomeFilme
     {
         get { return nomeFilme; }
@@ -88,7 +90,9 @@ public class Cinema
         {
             if (string.IsNullOrWhiteSpace(value))
             {
-                Console.WriteLine("Nome inválido.");
+                Console.WriteLine(
+                    "O nome do filme não pode estar vazio."
+                );
             }
             else
             {
@@ -97,7 +101,7 @@ public class Cinema
         }
     }
 
-    // Propriedade Poltronas
+    // Poltronas
     public bool[,] Poltronas
     {
         get { return poltronas; }
@@ -105,25 +109,43 @@ public class Cinema
     }
 
     // Reservar assento
-    public bool ReservarAssento(int linha, int coluna)
+    public bool ReservarAssento(int numeroPoltrona)
     {
-        if (linha < 0 || linha >= 5 ||
-            coluna < 0 || coluna >= 5)
+        // Verifica se o número existe
+        if (numeroPoltrona < 1 || numeroPoltrona > 25)
         {
+            Console.WriteLine(
+                "Número de poltrona inválido! Escolha entre 1 e 25."
+            );
+
             return false;
         }
 
+        // Converte o número da poltrona para linha e coluna
+        int numero = numeroPoltrona - 1;
+
+        int linha = numero / 5;
+        int coluna = numero % 5;
+
+        // Verifica se já está ocupada
         if (poltronas[linha, coluna])
         {
+            Console.WriteLine(
+                "Esta poltrona já está ocupada!"
+            );
+
             return false;
         }
 
+        // Reserva a poltrona
         poltronas[linha, coluna] = true;
+
+        reservarAssento = true;
 
         return true;
     }
 
-    // Transformar as poltronas em texto
+    // Transforma as poltronas em texto
     private string PoltronasParaTexto()
     {
         string texto = "";
@@ -146,29 +168,7 @@ public class Cinema
         return texto;
     }
 
-    // Transformar texto em matriz de poltronas
-    private void TextoParaPoltronas(string texto)
-    {
-        poltronas = new bool[5, 5];
-
-        int posicao = 0;
-
-        for (int linha = 0; linha < 5; linha++)
-        {
-            for (int coluna = 0; coluna < 5; coluna++)
-            {
-                if (posicao < texto.Length)
-                {
-                    poltronas[linha, coluna] =
-                        texto[posicao] == '1';
-
-                    posicao++;
-                }
-            }
-        }
-    }
-
-    // Cadastrar
+    // Cadastrar no banco
     public void Cadastrar()
     {
         using (MySqlConnection banco =
@@ -180,23 +180,23 @@ public class Cinema
                 "INSERT INTO cinemas " +
                 "(precoIngresso, quantidadeIngressos, nomeFilme, poltronas, reservarAssento) " +
                 "VALUES " +
-                "(@precoIngresso, @quantidadeIngressos, @nomeFilme, @poltronas, @reservarAssento)";
+                "(@preco, @quantidade, @filme, @poltronas, @reservar)";
 
             using (MySqlCommand comando =
                 new MySqlCommand(sql, banco))
             {
                 comando.Parameters.AddWithValue(
-                    "@precoIngresso",
+                    "@preco",
                     preçoIngresso
                 );
 
                 comando.Parameters.AddWithValue(
-                    "@quantidadeIngressos",
+                    "@quantidade",
                     quantidadeIngressos
                 );
 
                 comando.Parameters.AddWithValue(
-                    "@nomeFilme",
+                    "@filme",
                     nomeFilme
                 );
 
@@ -206,7 +206,7 @@ public class Cinema
                 );
 
                 comando.Parameters.AddWithValue(
-                    "@reservarAssento",
+                    "@reservar",
                     reservarAssento
                 );
 
@@ -217,245 +217,6 @@ public class Cinema
         Console.WriteLine(
             "Cinema cadastrado com sucesso!"
         );
-    }
-
-    // Listar
-    public static void Listar()
-    {
-        string conexao =
-            "Server=127.0.0.1;" +
-            "Database=Cinema;" +
-            "User ID=root;" +
-            "Password=SUA_SENHA;";
-
-        using (MySqlConnection banco =
-            new MySqlConnection(conexao))
-        {
-            banco.Open();
-
-            string sql =
-                "SELECT * FROM cinemas";
-
-            using (MySqlCommand comando =
-                new MySqlCommand(sql, banco))
-            using (MySqlDataReader leitor =
-                comando.ExecuteReader())
-            {
-                while (leitor.Read())
-                {
-                    Cinema cinema = new Cinema();
-
-                    cinema.id =
-                        leitor.GetInt32("id");
-
-                    cinema.preçoIngresso =
-                        leitor.GetDouble("precoIngresso");
-
-                    cinema.quantidadeIngressos =
-                        leitor.GetInt32("quantidadeIngressos");
-
-                    cinema.nomeFilme =
-                        leitor.GetString("nomeFilme");
-
-                    cinema.TextoParaPoltronas(
-                        leitor.GetString("poltronas")
-                    );
-
-                    cinema.reservarAssento =
-                        leitor.GetBoolean("reservarAssento");
-
-                    Console.WriteLine(cinema);
-                }
-            }
-        }
-    }
-
-    // Buscar
-    public static void Buscar(int id)
-    {
-        string conexao =
-            "Server=127.0.0.1;" +
-            "Database=Cinema;" +
-            "User ID=root;" +
-            "Password=SUA_SENHA;";
-
-        using (MySqlConnection banco =
-            new MySqlConnection(conexao))
-        {
-            banco.Open();
-
-            string sql =
-                "SELECT * FROM cinemas WHERE id = @id";
-
-            using (MySqlCommand comando =
-                new MySqlCommand(sql, banco))
-            {
-                comando.Parameters.AddWithValue(
-                    "@id",
-                    id
-                );
-
-                using (MySqlDataReader leitor =
-                    comando.ExecuteReader())
-                {
-                    if (leitor.Read())
-                    {
-                        Cinema cinema =
-                            new Cinema();
-
-                        cinema.id =
-                            leitor.GetInt32("id");
-
-                        cinema.preçoIngresso =
-                            leitor.GetDouble(
-                                "precoIngresso"
-                            );
-
-                        cinema.quantidadeIngressos =
-                            leitor.GetInt32(
-                                "quantidadeIngressos"
-                            );
-
-                        cinema.nomeFilme =
-                            leitor.GetString(
-                                "nomeFilme"
-                            );
-
-                        cinema.TextoParaPoltronas(
-                            leitor.GetString(
-                                "poltronas"
-                            )
-                        );
-
-                        cinema.reservarAssento =
-                            leitor.GetBoolean(
-                                "reservarAssento"
-                            );
-
-                        Console.WriteLine(cinema);
-                    }
-                    else
-                    {
-                        Console.WriteLine(
-                            "Cinema não encontrado."
-                        );
-                    }
-                }
-            }
-        }
-    }
-
-    // Atualizar
-    public void Atualizar()
-    {
-        using (MySqlConnection banco =
-            new MySqlConnection(conexao))
-        {
-            banco.Open();
-
-            string sql =
-                "UPDATE cinemas SET " +
-                "precoIngresso = @precoIngresso, " +
-                "quantidadeIngressos = @quantidadeIngressos, " +
-                "nomeFilme = @nomeFilme, " +
-                "poltronas = @poltronas, " +
-                "reservarAssento = @reservarAssento " +
-                "WHERE id = @id";
-
-            using (MySqlCommand comando =
-                new MySqlCommand(sql, banco))
-            {
-                comando.Parameters.AddWithValue(
-                    "@id",
-                    id
-                );
-
-                comando.Parameters.AddWithValue(
-                    "@precoIngresso",
-                    preçoIngresso
-                );
-
-                comando.Parameters.AddWithValue(
-                    "@quantidadeIngressos",
-                    quantidadeIngressos
-                );
-
-                comando.Parameters.AddWithValue(
-                    "@nomeFilme",
-                    nomeFilme
-                );
-
-                comando.Parameters.AddWithValue(
-                    "@poltronas",
-                    PoltronasParaTexto()
-                );
-
-                comando.Parameters.AddWithValue(
-                    "@reservarAssento",
-                    reservarAssento
-                );
-
-                int linhasAlteradas =
-                    comando.ExecuteNonQuery();
-
-                if (linhasAlteradas > 0)
-                {
-                    Console.WriteLine(
-                        "Cinema atualizado com sucesso!"
-                    );
-                }
-                else
-                {
-                    Console.WriteLine(
-                        "Cinema não encontrado."
-                    );
-                }
-            }
-        }
-    }
-
-    // Excluir
-    public static void Excluir(int id)
-    {
-        string conexao =
-            "Server=127.0.0.1;" +
-            "Database=Cinema;" +
-            "User ID=root;" +
-            "Password=SUA_SENHA;";
-
-        using (MySqlConnection banco =
-            new MySqlConnection(conexao))
-        {
-            banco.Open();
-
-            string sql =
-                "DELETE FROM cinemas WHERE id = @id";
-
-            using (MySqlCommand comando =
-                new MySqlCommand(sql, banco))
-            {
-                comando.Parameters.AddWithValue(
-                    "@id",
-                    id
-                );
-
-                int linhasExcluidas =
-                    comando.ExecuteNonQuery();
-
-                if (linhasExcluidas > 0)
-                {
-                    Console.WriteLine(
-                        "Cinema excluído com sucesso!"
-                    );
-                }
-                else
-                {
-                    Console.WriteLine(
-                        "Cinema não encontrado."
-                    );
-                }
-            }
-        }
     }
 
     // ToString
