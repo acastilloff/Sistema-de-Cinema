@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 while (true)
 {
     Console.WriteLine();
@@ -187,12 +186,6 @@ using MySqlConnector;
  
 public class Filme
 {
-=======
-using MySqlConnector;
-
-public class Filme
-{
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     private string conexao =
         "Server=127.0.0.1;" +
         "Port=3306;" +
