@@ -1,187 +1,3 @@
-while (true)
-{
-    Console.WriteLine();
-    Console.WriteLine("==============================");
-    Console.WriteLine("        GASTHER COLLUZ");
-    Console.WriteLine("        SISTEMA DE FILMES");
-    Console.WriteLine("==============================");
-    Console.WriteLine();
- 
-    Console.WriteLine("1 - Cadastrar filme");
-    Console.WriteLine("2 - Listar filmes");
-    Console.WriteLine("3 - Buscar filme");
-    Console.WriteLine("4 - Atualizar filme");
-    Console.WriteLine("5 - Excluir filme");
-    Console.WriteLine("0 - Sair");
- 
-    Console.WriteLine();
- 
-    Console.Write("Escolha uma opção: ");
- 
-    string opcao = Console.ReadLine() ?? "";
- 
-    Console.WriteLine();
- 
-    if (opcao == "1")
-    {
-        Console.Write("Digite o nome do filme: ");
- 
-        string nome = Console.ReadLine() ?? "";
- 
-        while (string.IsNullOrWhiteSpace(nome))
-        {
-            Console.WriteLine("Nome inválido!");
-            Console.Write("Digite o nome do filme novamente: ");
- 
-            nome = Console.ReadLine() ?? "";
-        }
- 
-        double preco;
- 
-        Console.Write("Digite o preço do ingresso: ");
- 
-        while (!double.TryParse(
-            Console.ReadLine(),
-            out preco) || preco <= 0)
-        {
-            Console.WriteLine("Preço inválido!");
-            Console.Write("Digite o preço novamente: ");
-        }
- 
-        int quantidade;
- 
-        Console.Write("Digite a quantidade de ingressos: ");
- 
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out quantidade) || quantidade < 0)
-        {
-            Console.WriteLine("Quantidade inválida!");
-            Console.Write("Digite a quantidade novamente: ");
-        }
- 
-        Filme filme = new Filme(
-            nome,
-            preco,
-            quantidade
-        );
- 
-        filme.Cadastrar();
-    }
-    else if (opcao == "2")
-    {
-        Console.WriteLine("===== FILMES CADASTRADOS =====");
-        Console.WriteLine();
- 
-        Filme.Listar();
-    }
-    else if (opcao == "3")
-    {
-        int id;
- 
-        Console.Write("Digite o ID do filme: ");
- 
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out id) || id <= 0)
-        {
-            Console.WriteLine("ID inválido!");
-            Console.Write("Digite o ID novamente: ");
-        }
- 
-        Filme.Buscar(id);
-    }
-    else if (opcao == "4")
-    {
-        int id;
- 
-        Console.Write("Digite o ID do filme: ");
- 
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out id) || id <= 0)
-        {
-            Console.WriteLine("ID inválido!");
-            Console.Write("Digite o ID novamente: ");
-        }
- 
-        Console.Write("Digite o novo nome do filme: ");
- 
-        string nome = Console.ReadLine() ?? "";
- 
-        while (string.IsNullOrWhiteSpace(nome))
-        {
-            Console.WriteLine("Nome inválido!");
-            Console.Write(
-                "Digite o nome do filme novamente: "
-            );
- 
-            nome = Console.ReadLine() ?? "";
-        }
- 
-        double preco;
- 
-        Console.Write("Digite o novo preço: ");
- 
-        while (!double.TryParse(
-            Console.ReadLine(),
-            out preco) || preco <= 0)
-        {
-            Console.WriteLine("Preço inválido!");
-            Console.Write("Digite o preço novamente: ");
-        }
- 
-        int quantidade;
- 
-        Console.Write("Digite a nova quantidade de ingressos: ");
- 
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out quantidade) || quantidade < 0)
-        {
-            Console.WriteLine("Quantidade inválida!");
-            Console.Write(
-                "Digite a quantidade novamente: "
-            );
-        }
- 
-        Filme.Atualizar(
-            id,
-            nome,
-            preco,
-            quantidade
-        );
-    }
-    else if (opcao == "5")
-    {
-        int id;
- 
-        Console.Write("Digite o ID do filme: ");
- 
-        while (!int.TryParse(
-            Console.ReadLine(),
-            out id) || id <= 0)
-        {
-            Console.WriteLine("ID inválido!");
-            Console.Write("Digite o ID novamente: ");
-        }
- 
-        Filme.Excluir(id);
-    }
-    else if (opcao == "0")
-    {
-        Console.WriteLine("Programa encerrado.");
-        break;
-    }
-    else
-    {
-        Console.WriteLine("Opção inválida!");
-        Console.WriteLine(
-            "Digite uma opção entre 0 e 5."
-        );
-    }
-}
- 
 using MySqlConnector;
  
 public class Filme
@@ -192,29 +8,17 @@ public class Filme
         "Database=Cinema;" +
         "User ID=root;" +
         "Password=Senac2026;";
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     private int id;
     private string nomeFilme = "";
     private double precoIngresso;
     private int quantidadeIngressos;
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     public Filme()
     {
         nomeFilme = "";
     }
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     public Filme(
         string nomeFilme,
         double precoIngresso,
@@ -224,21 +28,13 @@ public class Filme
         PrecoIngresso = precoIngresso;
         QuantidadeIngressos = quantidadeIngressos;
     }
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     public int Id
     {
         get { return id; }
         set { id = value; }
     }
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     public string NomeFilme
     {
         get { return nomeFilme; }
@@ -249,19 +45,11 @@ public class Filme
                 Console.WriteLine("Nome do filme inválido!");
                 return;
             }
-<<<<<<< HEAD
  
             nomeFilme = value;
         }
     }
  
-=======
-
-            nomeFilme = value;
-        }
-    }
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     public double PrecoIngresso
     {
         get { return precoIngresso; }
@@ -272,19 +60,11 @@ public class Filme
                 Console.WriteLine("Preço inválido!");
                 return;
             }
-<<<<<<< HEAD
  
             precoIngresso = value;
         }
     }
  
-=======
-
-            precoIngresso = value;
-        }
-    }
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     public int QuantidadeIngressos
     {
         get { return quantidadeIngressos; }
@@ -295,54 +75,30 @@ public class Filme
                 Console.WriteLine("Quantidade inválida!");
                 return;
             }
-<<<<<<< HEAD
  
             quantidadeIngressos = value;
         }
     }
  
-=======
-
-            quantidadeIngressos = value;
-        }
-    }
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     public void Cadastrar()
     {
         using (MySqlConnection banco =
             new MySqlConnection(conexao))
         {
             banco.Open();
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
             string sql =
                 "INSERT INTO filmes " +
                 "(nomeFilme, precoIngresso, quantidadeIngressos) " +
                 "VALUES " +
                 "(@nome, @preco, @quantidade)";
-<<<<<<< HEAD
  
-=======
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
             using (MySqlCommand comando =
                 new MySqlCommand(sql, banco))
             {
                 comando.Parameters.AddWithValue(
                     "@nome",
                     NomeFilme
-<<<<<<< HEAD
-=======
-                );
-
-                comando.Parameters.AddWithValue(
-                    "@preco",
-                    PrecoIngresso
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
                 );
  
                 comando.Parameters.AddWithValue(
@@ -354,7 +110,6 @@ public class Filme
                     "@quantidade",
                     QuantidadeIngressos
                 );
-<<<<<<< HEAD
  
                 comando.ExecuteNonQuery();
             }
@@ -364,17 +119,6 @@ public class Filme
         Console.WriteLine("Filme cadastrado com sucesso!");
     }
  
-=======
-
-                comando.ExecuteNonQuery();
-            }
-        }
-
-        Console.WriteLine();
-        Console.WriteLine("Filme cadastrado com sucesso!");
-    }
-
->>>>>>> 08f7b3f0bdcb489fb45cb5d197b59479839a639c
     public static void Listar()
     {
         string conexao =
