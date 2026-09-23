@@ -740,19 +740,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\arthur62037926\\.nuget\\packages\\": {}
+    "C:\\Users\\giovanna60895976\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\arthur62037926\\OneDrive - SENAC-SC\\Documentos\\GitHub\\ProjetoFinalDS-Arthur-Ester-Luz\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
+      "projectUniqueName": "C:\\Users\\giovanna60895976\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
       "projectName": "Sistema-de-Cinema",
-      "projectPath": "C:\\Users\\arthur62037926\\OneDrive - SENAC-SC\\Documentos\\GitHub\\ProjetoFinalDS-Arthur-Ester-Luz\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
-      "packagesPath": "C:\\Users\\arthur62037926\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\arthur62037926\\OneDrive - SENAC-SC\\Documentos\\GitHub\\ProjetoFinalDS-Arthur-Ester-Luz\\Sistema-de-Cinema\\obj\\",
+      "projectPath": "C:\\Users\\giovanna60895976\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
+      "packagesPath": "C:\\Users\\giovanna60895976\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\giovanna60895976\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\arthur62037926\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\giovanna60895976\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
