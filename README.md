@@ -23,3 +23,5 @@ Abra o projeto no VS Code e, no terminal, execute o comando ||dotnet run||. O pr
 
 # Breve explicação de como funciona a conexão.
 O sistema utiliza a biblioteca MySqlConnector para conectar o programa C# ao banco de dados Cinema, que está no MySQL. A conexão é feita por meio de uma string contendo o servidor, porta, banco, usuário e senha. O programa abre a conexão com MySqlConnection, envia comandos SQL usando MySqlCommand e recebe os dados do banco através do MySqlDataReader. Após realizar a operação, a conexão é fechada automaticamente pelo using.
+
+# COMANDOS SQL
