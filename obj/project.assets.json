@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 3,
   "targets": {
     "net10.0": {
       "BouncyCastle.Cryptography/2.6.2": {
@@ -740,25 +740,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\ester62042096\\.nuget\\packages\\": {}
-=======
     "C:\\Users\\giovanna60895976\\.nuget\\packages\\": {}
->>>>>>> 12d0efd643aa7b8552acc000602d3360a33727f5
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\ester62042096\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
-      "projectName": "Sistema-de-Cinema",
-      "projectPath": "C:\\Users\\ester62042096\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
-      "packagesPath": "C:\\Users\\ester62042096\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ester62042096\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\ester62042096\\AppData\\Roaming\\NuGet\\NuGet.Config"
-=======
       "projectUniqueName": "C:\\Users\\giovanna60895976\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
       "projectName": "Sistema-de-Cinema",
       "projectPath": "C:\\Users\\giovanna60895976\\OneDrive - SENAC-SC\\Documentos\\GitHub\\Sistema-de-Cinema\\Sistema-de-Cinema.csproj",
@@ -767,7 +753,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\giovanna60895976\\AppData\\Roaming\\NuGet\\NuGet.Config"
->>>>>>> 12d0efd643aa7b8552acc000602d3360a33727f5
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -777,7 +762,6 @@
       },
       "frameworks": {
         "net10.0": {
-          "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {}
         }
@@ -792,11 +776,10 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.400"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net10.0": {
-        "framework": "net10.0",
         "targetAlias": "net10.0",
         "dependencies": {
           "MySql.Data": {
@@ -824,7 +807,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",
