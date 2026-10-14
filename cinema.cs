@@ -365,4 +365,3 @@ public class Filme
             $"Ingressos: {QuantidadeIngressos}";
     }
 }
- 
